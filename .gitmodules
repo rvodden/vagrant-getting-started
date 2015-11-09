@@ -1,0 +1,12 @@
+[submodule "packer/centos-7.1-nexus/puppet/java"]
+	path = packer/centos-7.1-nexus/puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/nexus"]
+	path = packer/centos-7.1-nexus/puppet/modules/nexus
+	url = https://github.com/hubspotdevops/puppet-nexus.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/stdlib"]
+	path = packer/centos-7.1-nexus/puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/wget"]
+	path = packer/centos-7.1-nexus/puppet/modules/wget
+	url = https://github.com/maestrodev/puppet-wget.git
