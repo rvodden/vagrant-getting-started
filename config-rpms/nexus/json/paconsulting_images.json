@@ -1,0 +1,19 @@
+{ data:
+{
+	"browseable": true,
+	"contentResourceURI": "http://localhost:8081/nexus/content/repositories/paconsulting_images",
+	"defaultLocalStorageUrl": "file:/opt/nexus/sonatype-work/nexus/storage/paconsulting_images",
+	"downloadRemoteIndexes": false,
+	"exposed": true,
+	"format": "maven2",
+	"id": "paconsulting_images",
+	"indexable": true,
+	"name": "PA Consulting Images",
+	"notFoundCacheTTL": 1440,
+	"provider": "maven2",
+	"providerRole": "org.sonatype.nexus.proxy.repository.Repository",
+	"repoPolicy": "RELEASE",
+	"repoType": "hosted",
+	"writePolicy": "ALLOW_WRITE_ONCE"
+}
+}

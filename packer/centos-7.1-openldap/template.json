@@ -1,0 +1,47 @@
+{
+  "provisioners": [
+    {
+      "type": "puppet-masterless",
+      "manifest_file": "puppet/manifest/default.pp",
+      "module_paths": "puppet/modules",
+      "execute_command": "cd {{.WorkingDir}} && {{.FacterVars}}{{if .Sudo}} sudo -E {{end}}/opt/puppetlabs/bin/puppet apply --verbose --modulepath='{{.ModulePath}}' {{if ne .HieraConfigPath \"\"}} --hiera_config='{{.HieraConfigPath}}' {{end}} {{if ne .ManifestDir \"\"}}--manifestdir='{{.ManifestDir}}' {{end}} --detailed-exitcodes {{.ManifestFile}}"
+    },
+    {
+        "type": "shell",
+        "inline": [
+            "firewall-cmd --zone=public --add-port=80/tcp  --permanent", 
+            "firewall-cmd --reload"
+        ],
+        "execute_command": "echo 'vagrant' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'"
+
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "only": ["virtualbox-ovf"],
+      "output": "centos-7-1-x64-openldap-virtualbox.box"
+    }
+  ],
+  "builders": [
+    {
+      "type": "virtualbox-ovf",
+      "source_path": "../centos-7.1-base/output-virtualbox-iso/centos-71-base.ovf",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "shutdown_command": "echo 'vagrant' | sudo -S shutdown -P now"
+    },
+    {
+            "type": "googlecompute",
+            "image_name": "centos-71-openldap",
+            "instance_name": "centos-71-openldap",
+            "ssh_username": "vagrant",
+            "ssh_password": "vagrant",
+            "ssh_pty" : "true",
+            "account_file": "google_cloud.json",
+            "project_id": "audry-666",
+            "source_image": "centos-71-base",
+            "zone": "europe-west1-b"
+        }
+  ]
+}

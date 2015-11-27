@@ -1,0 +1,42 @@
+[submodule "packer/centos-7.1-nexus/puppet/java"]
+	path = packer/centos-7.1-nexus/puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/nexus"]
+	path = packer/centos-7.1-nexus/puppet/modules/nexus
+	url = https://github.com/dsestero/nexus.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/stdlib"]
+	path = packer/centos-7.1-nexus/puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/wget"]
+	path = packer/centos-7.1-nexus/puppet/modules/wget
+	url = https://github.com/maestrodev/puppet-wget.git
+[submodule "packer/centos-7.1-gitlab/puppet/modules/gitlab"]
+	path = packer/centos-7.1-gitlab/puppet/modules/gitlab
+	url = https://github.com/vshn/puppet-gitlab.git
+[submodule "packer/centos-7.1-openam/puppet/modules/tomcat"]
+	path = packer/centos-7.1-openam/puppet/modules/tomcat
+	url = https://github.com/puppetlabs/puppetlabs-tomcat.git
+[submodule "packer/centos-7.1-tomcat/puppet/modules/epel"]
+	path = packer/centos-7.1-tomcat/puppet/modules/epel
+	url = https://github.com/stahnma/puppet-module-epel.git
+[submodule "packer/centos-7.1-gitlab/puppet/modules/stdlib"]
+	path = packer/centos-7.1-gitlab/puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "packer/centos-7.1-nexus/puppet/modules/java"]
+	path = packer/centos-7.1-nexus/puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
+[submodule "packer/centos-7.1-tomcat/puppet/modules/java"]
+	path = packer/centos-7.1-tomcat/puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
+[submodule "packer/centos-7.1-tomcat/puppet/modules/stdlib"]
+	path = packer/centos-7.1-tomcat/puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "packer/centos-7.1-tomcat/puppet/modules/tomcat"]
+	path = packer/centos-7.1-tomcat/puppet/modules/tomcat
+	url = https://github.com/puppetlabs/puppetlabs-tomcat.git
+[submodule "packer/centos-7.1-openldap/puppet/modules/stdlib"]
+	path = packer/centos-7.1-openldap/puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "packer/centos-7.1-openldap/puppet/modules/openldap"]
+	path = packer/centos-7.1-openldap/puppet/modules/openldap
+	url = https://github.com/camptocamp/puppet-openldap.git
