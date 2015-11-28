@@ -34,9 +34,21 @@
 [submodule "packer/centos-7.1-tomcat/puppet/modules/tomcat"]
 	path = packer/centos-7.1-tomcat/puppet/modules/tomcat
 	url = https://github.com/puppetlabs/puppetlabs-tomcat.git
-[submodule "packer/centos-7.1-openldap/puppet/modules/stdlib"]
-	path = packer/centos-7.1-openldap/puppet/modules/stdlib
-	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
-[submodule "packer/centos-7.1-openldap/puppet/modules/openldap"]
-	path = packer/centos-7.1-openldap/puppet/modules/openldap
-	url = https://github.com/camptocamp/puppet-openldap.git
+[submodule "packer/centos-7.1-puppet/puppet/modules/puppet"]
+	path = packer/centos-7.1-puppet/puppet/modules/puppet
+	url = https://github.com/abstractitptyltd/abstractit-puppet.git
+[submodule "packer/centos-7.1-puppet/puppet/modules/concat"]
+	path = packer/centos-7.1-puppet/puppet/modules/concat
+	url = https://github.com/puppetlabs/puppetlabs-concat.git
+[submodule "packer/centos-7.1-puppet/puppet/modules/inifile"]
+	path = packer/centos-7.1-puppet/puppet/modules/inifile
+	url = https://github.com/puppetlabs/puppetlabs-inifile.git
+[submodule "packer/centos-7.1-puppet/puppet/modules/puppetdb"]
+	path = packer/centos-7.1-puppet/puppet/modules/puppetdb
+	url = https://github.com/puppetlabs/puppetlabs-puppetdb.git
+[submodule "packer/centos-7.1-puppet/puppet/modules/firewall"]
+	path = packer/centos-7.1-puppet/puppet/modules/firewall
+	url = https://github.com/puppetlabs/puppetlabs-firewall.git
+[submodule "packer/centos-7.1-puppet/puppet/modules/postgresql"]
+	path = packer/centos-7.1-puppet/puppet/modules/postgresql
+	url = https://github.com/puppetlabs/puppetlabs-postgresql.git

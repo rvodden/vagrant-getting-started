@@ -1,33 +1,51 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-
-
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure("2") do |config|
-	config.vm.box = "centos-7-1-x64-gitlab-google"
-	config.vm.hostname = "gitlab"
+    config.vm.define "puppetserver" do |puppetserver|
 
-  config.vm.provider :google do |google, override|
-    google.google_project_id = "audry-666"
-    google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
-    google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
-    # Define the name of the instance.
-    google.name = "gitlab"
-    # Set the zone where the instance will be located. To find out available zones:
-    # `gcloud compute zones list`.
-    google.zone = "europe-west1-b"
-    # Set the machine type to use. To find out available types:
-    # `gcloud compute machine-types list --zone asia-east1-c`.
-    google.machine_type = "n1-standard-2"
-    # Set the machine image to use. To find out available images:
-    # `$ gcloud compute images list`.
-    google.image = "centos-71-nexus"
-  
-    override.ssh.username = "vagrant"
-    override.ssh.private_key_path = "~/.ssh/google"
-  end
+        puppetserver.vm.box = "centos-7-1-x64-puppetmaster-google"
+        puppetserver.vm.hostname = "puppet"
+
+        puppetserver.vm.provider :google do |google, override|
+            google.google_project_id = "audry-666"
+            google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
+            google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
+            google.name = "puppetserver"
+            override.ssh.username = "vagrant"
+            override.ssh.private_key_path = "~/.ssh/google"
+        end
+    end
+
+    config.vm.define "nexus" do |nexus|
+        nexus.vm.box = "centos-7-1-x64-google"
+        nexus.vm.hostname = "nexus"
+
+        nexus.vm.provider :google do |google, override|
+            google.google_project_id = "audry-666"
+            google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
+            google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
+            google.name = "nexus"
+            override.ssh.username = "vagrant"
+            override.ssh.private_key_path = "~/.ssh/google"
+        end
+    end
+
+    config.vm.define "gitlab" do |gitlab|
+        gitlab.vm.box = "centos-7-1-x64-google"
+        gitlab.vm.hostname = "nexus"
+
+        gitlab.vm.provider :google do |google, override|
+            google.google_project_id = "audry-666"
+            google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
+            google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
+            google.name = "gitlab"
+            override.ssh.username = "vagrant"
+            override.ssh.private_key_path = "~/.ssh/google"
+        end
+    end
 end

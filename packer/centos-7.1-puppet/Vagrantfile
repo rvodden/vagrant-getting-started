@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
   config.vm.provider :google do |google|
-    google.image = "centos-71-openldap"
+    google.image = "centos-71-puppetmaster"
     google.machine_type = "n1-standard-1"
     google.zone = "europe-west1-b"
   end

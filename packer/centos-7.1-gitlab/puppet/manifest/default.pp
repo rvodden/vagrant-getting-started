@@ -6,9 +6,6 @@ class { 'gitlab':
 
 file { '/etc/systemd/system/default.target.wants/gitlab-runsvdir.service':
   ensure => 'link',
-  target => '/etc/systemd/system/default.target.wants/gitlab-runsvdir.service'
+  target => '/opt/gitlab/embedded/cookbooks/runit/files/default/gitlab-runsvdir.service'
 }
 
-service { 'gitlab-runsvdir':
-  ensure => 'running'
-}
