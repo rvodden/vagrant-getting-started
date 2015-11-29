@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.paconsulting.config.ldap</groupId>
+  <artifactId>ldap-initial</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>${project.artifactId}</name>
+  <url>http://maven.apache.org</url>
+  <packaging>rpm</packaging>
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <ldap.ldif.name>ilab.paconsulting.com.ldif</ldap.ldif.name>
+  </properties>
+  <scm>
+    <url>https://stash.ipttools.info/ebsat/rpm.git</url>
+    <connection>scm:git:ssh://git@10.1.2.3:2022/ebsat/ebsa-middleware-components.git</connection>
+    <developerConnection>scm:git:ssh://git@10.1.2.3:2022/ebsat/ebsa-middleware-components.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>rpm-maven-plugin</artifactId>
+        <extensions>true</extensions>
+            <configuration>
+              <targetOS>linux</targetOS>
+              <copyright>2015 PA Consulting Group</copyright>
+              <distribution>PA Consulting</distribution>
+              <group>PAConsulting/Environments</group>
+              <name>${project.artifactId}</name>
+              <defaultGroupname>root</defaultGroupname>
+              <defaultUsername>root</defaultUsername>
+              <packager>PA Consulting</packager>
+              <mappings>
+                <mapping>
+                    <directory>/tmp/ldap</directory>
+                  <sources>
+                    <source>
+                        <location>src/main/resources/ldif/${ldap.ldif.name}</location>
+                    </source>
+                  </sources>
+                </mapping>
+            </mappings>
+            <postinstallScriptlet>
+                <script>
+                    ldapadd -x -w secret -D "cn=admin,dc=paconsulting,dc=com" -f /tmp/ldap/${ldap.ldif.name}
+                    rm -f /tmp/${ldap.ldif.name}
+                </script>
+            </postinstallScriptlet>
+            </configuration>
+            <goals>
+              <goal>attached-rpm</goal>
+            </goals>
+      </plugin>
+    </plugins>
+  </build>
+</project>

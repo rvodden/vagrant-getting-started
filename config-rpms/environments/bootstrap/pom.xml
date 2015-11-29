@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.paconsulting.environments</groupId>
+  <artifactId>tooling-environment</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>${project.artifactId}</name>
+  <url>http://maven.apache.org</url>
+  <packaging>rpm</packaging>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <puppet.environment.name>bootstrap</puppet.environment.name>
+  </properties>
+  <scm>
+    <url>https://stash.ipttools.info/ebsat/rpm.git</url>
+    <connection>scm:git:ssh://git@10.1.2.3:2022/ebsat/ebsa-middleware-components.git</connection>
+    <developerConnection>scm:git:ssh://git@10.1.2.3:2022/ebsat/ebsa-middleware-components.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>rpm-maven-plugin</artifactId>
+        <extensions>true</extensions>
+            <configuration>
+              <targetOS>linux</targetOS>
+              <copyright>2015 PA Consulting Group</copyright>
+              <distribution>PA Consulting</distribution>
+              <group>PAConsulting/Environments</group>
+              <name>${project.artifactId}</name>
+              <defaultGroupname>root</defaultGroupname>
+              <defaultUsername>root</defaultUsername>
+              <packager>PA Consulting</packager>
+              <mappings>
+                <mapping>
+                  <directory>/etc/puppetlabs/code/environments/${puppet.environment.name}</directory>
+                  <filemode>750</filemode>
+                  <username>puppet</username>
+                  <groupname>puppet</groupname>
+                  <sources>
+                    <source>
+                        <location>src/main/resources/puppet</location>
+                    </source>
+                  </sources>
+                </mapping>
+            </mappings>
+            <postinstallScriptlet>
+                <script>
+                    /opt/puppetlabs/bin/puppet module install puppetlabs-java --environment=bootstrap
+                    /opt/puppetlabs/bin/puppet module install hubspot-nexus --environment=bootstrap
+                    /opt/puppetlabs/bin/puppet module install vshn-gitlab --environment=bootstrap 
+                    /opt/puppetlabs/bin/puppet module install camptocamp-openldap --environment=bootstrap 
+                    /opt/puppetlabs/bin/puppet module install puppetlabs-firewall --environment=bootstrap 
+                    /opt/puppetlabs/bin/puppet module install trlinkin-nsswitch --environment=bootstrap 
+                </script>
+            </postinstallScriptlet>
+            </configuration>
+            <goals>
+              <goal>attached-rpm</goal>
+            </goals>
+      </plugin>
+    </plugins>
+  </build>
+</project>

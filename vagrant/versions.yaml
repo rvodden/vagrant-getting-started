@@ -1,0 +1,4 @@
+{
+    "bootstrap-rpm": "tooling-environment-0.0.1-SNAPSHOT20151129123210.noarch.rpm",
+    "ldif-rpm": "ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm"
+}

@@ -21,8 +21,8 @@ Vagrant.configure("2") do |config|
             override.ssh.private_key_path = "~/.ssh/google"
         end
 
-        puppet.vm.provision 'file', source: '../config-rpms/environments/bootstrap/target/rpm/tooling-environment/RPMS/noarch/tooling-environment-0.0.1-SNAPSHOT20151129123210.noarch.rpm', destination: '/tmp/tooling-environment-0.0.1-SNAPSHOT20151129123210.noarch.rpm'
-        puppet.vm.provision 'shell', inline:'rpm -ivh /tmp/tooling-environment-0.0.1-SNAPSHOT20151129123210.noarch.rpm'
+        puppet.vm.provision 'file', source: '../config-rpms/environments/bootstrap/target/rpm/tooling-environment/RPMS/noarch/{{bootstrap-rpm}}', destination: '/tmp/{{bootstrap-rpm}}'
+        puppet.vm.provision 'shell', inline:'rpm -ivh /tmp/{{bootstrap-rpm}}'
     end
 
     config.vm.define "nexus" do |nexus|
@@ -84,7 +84,7 @@ Vagrant.configure("2") do |config|
             override.ssh.private_key_path = "~/.ssh/google"
         end
         
-        ldap.vm.provision 'file', source: '../config-rpms/ldap/target/rpm/ldap-initial/RPMS/noarch/ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm', destination: '/tmp/ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm'
-        ldap.vm.provision 'shell', inline:'rpm -ivh /tmp/ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm'
+        ldap.vm.provision 'file', source: '../config-rpms/ldap/target/rpm/ldap-initial/RPMS/noarch/{{ldif-rpm}}', destination: '/tmp/{{ldif-rpm}}'
+        ldap.vm.provision 'shell', inline:'rpm -ivh /tmp/{{ldif-rpm}}'
     end
 end
