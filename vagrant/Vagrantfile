@@ -84,7 +84,7 @@ Vagrant.configure("2") do |config|
             override.ssh.private_key_path = "~/.ssh/google"
         end
         
-        ldap.vm.provision 'file', source: '../config-rpms/ldap/target/rpm/ldap-initial/RPMS/noarch/ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm', destination: '/tmp/ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm'
-        ldap.vm.provision 'shell', inline:'rpm -ivh /tmp/ldap-initial-0.0.1-SNAPSHOT20151129145237.noarch.rpm'
+        ldap.vm.provision 'file', source: '../config-rpms/ldap/target/rpm/ldap-initial/RPMS/noarch/ldap-initial-0.0.1-SNAPSHOT20151129163736.noarch.rpm', destination: '/tmp/ldap-initial-0.0.1-SNAPSHOT20151129163736.noarch.rpm'
+        ldap.vm.provision 'shell', inline:'rpm -ivh /tmp/ldap-initial-0.0.1-SNAPSHOT20151129163736.noarch.rpm'
     end
 end

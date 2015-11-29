@@ -1,5 +1,12 @@
-version: 1
-# This DN is first to be loaded into database, then first level DN, then 2nd level, etc.
+# extended LDIF
+#
+# LDAPv3
+# base <dc=paconsulting,dc=com> with scope subtree
+# filter: (objectclass=*)
+# requesting: ALL
+#
+
+# ilab.paconsulting.com
 dn: dc=ilab,dc=paconsulting,dc=com
 objectClass: top
 objectClass: dcObject
@@ -8,17 +15,50 @@ dc: ilab
 o: ilab
 description: iLab at PA Consulting Group  # 'description' is MAY
 
+# Users, ilab.paconsulting.com
 dn: ou=Users,dc=ilab,dc=paconsulting,dc=com
 ou: users
 description: all the users specific to the iLab
 objectClass: organizationalUnit
 
+# Groups, ilab.paconsulting.com
 dn: ou=Groups,dc=ilab,dc=paconsulting,dc=com
 ou: groups
 description: all the groups specific to the iLab
 objectClass: organizationalUnit
 
+# ldapmanager, ilab.paconsulting.com
 dn: cn=ldapmanager,dc=ilab,dc=paconsulting,dc=com
 objectClass: organizationalRole
 cn: LDAP Manager
+cn: ldapmanager
 description: LDAP Superuser
+
+# voddenr, Users, ilab.paconsulting.com
+dn: cn=voddenr,ou=Users,dc=ilab,dc=paconsulting,dc=com
+objectClass: top
+objectClass: inetOrgPerson
+objectClass: posixAccount
+givenName: Richard
+sn: Vodden
+cn: Richard Vodden
+cn: voddenr
+uid: voddenr
+uidNumber: 10001
+homeDirectory: /home/voddenr
+loginShell: /bin/bash
+gidNumber: 2002
+userPassword:: e1NTSEF9YnhNa0NwOUllNW5vZ1dUSzVzdUtZdkVlN0I5L3NZcEQ=
+
+# Allow Login, Groups, ilab.paconsulting.com
+dn: cn=Allow Login,ou=Groups,dc=ilab,dc=paconsulting,dc=com
+cn: Allow Login
+objectClass: top
+objectClass: groupOfNames
+member: cn=voddenr,ou=Users,dc=ilab,dc=paconsulting,dc=com
+
+# owners, Groups, ilab.paconsulting.com
+dn: cn=owners,ou=Groups,dc=ilab,dc=paconsulting,dc=com
+cn: owners
+objectClass: posixGroup
+gidNumber: 2002
