@@ -64,10 +64,70 @@ Vagrant.configure("2") do |config|
             override.ssh.private_key_path = "~/.ssh/google"
         end
     end
-    
+
+    config.vm.define "jenkins" do |jenkins|
+        jenkins.vm.box = "centos-7-1-x64-google"
+        jenkins.vm.hostname = "jenkins"
+       
+        jenkins.vm.provision 'file', source: 'puppet/puppet.conf', destination: '/tmp/puppet.conf' 
+        jenkins.vm.provision 'shell', inline: 'sudo mv /tmp/puppet.conf /etc/puppetlabs/puppet/puppet.conf'
+
+        jenkins.vm.provision :puppet_server do |puppet_server|
+        end
+        
+        jenkins.vm.provider :google do |google, override|
+            google.google_project_id = "audry-666"
+            google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
+            google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
+            google.name = "jenkins"
+            override.ssh.username = "vagrant"
+            override.ssh.private_key_path = "~/.ssh/google"
+        end
+    end
+
+    config.vm.define "gateway" do |gateway|
+        gateway.vm.box = "centos-7-1-x64-google"
+        gateway.vm.hostname = "gateway"
+       
+        gateway.vm.provision 'file', source: 'puppet/puppet.conf', destination: '/tmp/puppet.conf' 
+        gateway.vm.provision 'shell', inline: 'sudo mv /tmp/puppet.conf /etc/puppetlabs/puppet/puppet.conf'
+
+        gateway.vm.provision :puppet_server do |puppet_server|
+        end
+        
+        gateway.vm.provider :google do |google, override|
+            google.google_project_id = "audry-666"
+            google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
+            google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
+            google.name = "gateway"
+            override.ssh.username = "vagrant"
+            override.ssh.private_key_path = "~/.ssh/google"
+        end
+    end
+
+    config.vm.define "openam" do |openam|
+        openam.vm.box = "centos-7-1-x64-google"
+        openam.vm.hostname = "openam"
+       
+        openam.vm.provision 'file', source: 'puppet/puppet.conf', destination: '/tmp/puppet.conf' 
+        openam.vm.provision 'shell', inline: 'sudo mv /tmp/puppet.conf /etc/puppetlabs/puppet/puppet.conf'
+
+        openam.vm.provision :puppet_server do |puppet_server|
+        end
+        
+        openam.vm.provider :google do |google, override|
+            google.google_project_id = "audry-666"
+            google.google_client_email = "account-1@audry-666.iam.gserviceaccount.com"
+            google.google_json_key_location = "../packer/centos-7.1-base/google_cloud.json"
+            google.name = "openam"
+            override.ssh.username = "vagrant"
+            override.ssh.private_key_path = "~/.ssh/google"
+        end
+    end
+
     config.vm.define "ldap" do |ldap|
         ldap.vm.box = "centos-7-1-x64-google"
-        ldap.vm.hostname = "gitlab"
+        ldap.vm.hostname = "ldap"
        
         ldap.vm.provision 'file', source: 'puppet/puppet.conf', destination: '/tmp/puppet.conf' 
         ldap.vm.provision 'shell', inline: 'sudo mv /tmp/puppet.conf /etc/puppetlabs/puppet/puppet.conf'
